@@ -1,3 +1,4 @@
+import sys
 import matplotlib.pyplot as plt
 from data.filling import rna_dna_bases, aminoacids_tables
 from Bio.SeqIO import parse
@@ -33,7 +34,7 @@ def gc_ratio_plotting(string, step=100):
         x_axis.append(i)
         y_axis.append(gc_ratio)
     plt.plot(x_axis, y_axis, color='#a652ad')
-    plt.title('GC-content of cystic fibrosis transmembrane conductance regulator (CFTR)', style='italic', size=16)
+    plt.title('GC-content', style='italic', size=16)
     plt.xlabel('Genome position', size=14)
     plt.ylabel('GC ratio, %', size=14)
     figure = plt.gcf()
@@ -42,8 +43,24 @@ def gc_ratio_plotting(string, step=100):
     return plt.show()
 
 
-cftr_seq = parse(open('./data/gene.fna'), 'fasta')
-for s in cftr_seq:
-    cftr_seq = s.seq
+plot_seq = parse(open('./data/gene.fna'), 'fasta')
+for s in plot_seq:
+    plot_seq = s.seq
 
-cftr_gc_ratio = gc_ratio_plotting(cftr_seq)
+cftr_gc_ratio = gc_ratio_plotting(plot_seq)
+
+
+
+
+def command_input(input_data):
+    if len(sys.argv) == 3:
+        command = sys.argv[1].strip()
+        input_data = sys.argv[2]
+        if command == "trascription":
+            print(convert_dna_to_rna(input_data))
+        if command == "translation":
+            print(convert_rna_to_protein(input_data))
+    else:
+        print("You must put 3 arguments!")
+if __name__ == '__main__':
+    command_input(sys.argv)
