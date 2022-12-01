@@ -1,11 +1,12 @@
 import matplotlib.pyplot as plt
-from data.db_filling import rna_dna_bases, aminoacids_tables
+from data.filling import rna_dna_bases, aminoacids_tables
 from Bio.SeqIO import parse
 
 
 # Converting DNA to RNA by replacing "T" to "U"
 def convert_dna_to_rna(dna_sequence: str) -> str:
     # rna_sequence = sequence.replace("T", "U") # first variant of the task #1 before database
+    dna_sequence = ''.join(dna_sequence.split()).upper()
     rna_sequence = ""
     for base in dna_sequence:
         rna_sequence += rna_dna_bases(base)
@@ -13,7 +14,8 @@ def convert_dna_to_rna(dna_sequence: str) -> str:
 
 
 # Converting RNA to protein
-def convert_rna_to_protein(rna_sequence):
+def convert_rna_to_protein(rna_sequence: str) -> str:
+    rna_sequence = ''.join(rna_sequence.split()).upper()
     protein = ""
     # checking the length of our sequence, considering its length may not be divisible by triplets completely
     for i in range(0, len(rna_sequence) - (3 + len(rna_sequence) % 3) + 2, 3):

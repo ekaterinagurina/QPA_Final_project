@@ -1,4 +1,4 @@
-from data.database_tables import Base, DNA_Bases, RNA_Bases, Codons, AminoAcids
+from .database import Base, DNA_Bases, RNA_Bases, Codons, AminoAcids
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
