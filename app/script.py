@@ -1,12 +1,15 @@
 import sys
 import matplotlib.pyplot as plt
-from data.filling import rna_dna_bases, aminoacids_tables
-from Bio.SeqIO import parse
+from db.filling import rna_dna_bases, aminoacids_tables
+from config import INPUT_GENE
+
+'''Making a constant value for the Rna_To_Protein Function.
+This constant represents an RNA triplet needed to be assign to specific aminoacid'''
+TRIPLET = 3
 
 
-# Converting DNA to RNA by replacing "T" to "U"
 def convert_dna_to_rna(dna_sequence: str) -> str:
-    # rna_sequence = sequence.replace("T", "U") # first variant of the task #1 before database
+    ''' Converting DNA sequence to RNA sequence by replacing "T" base to "U" base'''
     dna_sequence = ''.join(dna_sequence.split()).upper()
     rna_sequence = ""
     for base in dna_sequence:
@@ -14,17 +17,26 @@ def convert_dna_to_rna(dna_sequence: str) -> str:
     return rna_sequence
 
 
-# Converting RNA to protein
 def convert_rna_to_protein(rna_sequence: str) -> str:
+    ''' Converting RNA sequence into the amino acid sequence of a protein.
+    Using tables of aminoacids from /db/filling,py '''
+
     rna_sequence = ''.join(rna_sequence.split()).upper()
     protein = ""
-    # checking the length of our sequence, considering its length may not be divisible by triplets completely
-    for i in range(0, len(rna_sequence) - (3 + len(rna_sequence) % 3) + 2, 3):
+
+    ''' checking the length of our sequence,
+    considering its length may not be divisible by triplets completely '''
+
+    for i in range(0, len(rna_sequence) - (3 + len(rna_sequence) % 3) + 2, TRIPLET):
         protein += aminoacids_tables(rna_sequence[i:i + 3])
     return protein
 
 
-def gc_ratio_plotting(string, step=100):
+def gc_ratio_plotting(string: str, step=100) -> None:
+    '''This is a script to count GC-content of a DNA seqeunce and then to plot GC ratio in a DNA molecule.
+    The horizontal axis of this graph is the genome position.
+    The vertical axis is the GC ratio in the window.
+    Default size of a window be 100 bases.'''
     x_axis = []
     y_axis = []
     for i in range(0, len(string), step):
@@ -39,17 +51,20 @@ def gc_ratio_plotting(string, step=100):
     plt.ylabel('GC ratio, %', size=14)
     figure = plt.gcf()
     figure.set_size_inches(12, 6)
-    plt.savefig('./plots/gc-content.png', dpi=100)
+    plt.savefig('./app/data/gc-content.png', dpi=100)
     return plt.show()
 
 
-plot_seq = parse(open('./data/gene.fna'), 'fasta')
-for s in plot_seq:
-    plot_seq = s.seq
+def open_input_file(plot_seq: str) -> str:
+    '''Function to open file with genom sequence. Works with FASTA files'''
+    plot_seq = INPUT_GENE
+    for s in plot_seq:
+        plot_seq = s.seq
 
-cftr_gc_ratio = gc_ratio_plotting(plot_seq)
 
-
+'''Calling gc_ratio_plotting function to get GC-plot'''
+gc_ratio = gc_ratio_plotting(open_input_file)
+gc_ratio()
 
 
 def command_input(input_data):
@@ -62,5 +77,7 @@ def command_input(input_data):
             print(convert_rna_to_protein(input_data))
     else:
         print("You must put 3 arguments!")
+
+
 if __name__ == '__main__':
     command_input(sys.argv)
