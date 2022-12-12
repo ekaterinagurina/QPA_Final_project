@@ -12,6 +12,7 @@ Also there is script for plotting guanine-cytosine content (GC-content) of DNA m
 *As an example I used CF transmembrane conductance regulator which is located in 7q chromose.*
 
 #### Small note on Cystic Fibrosis
+
 > "The encoded protein functions as a chloride channel, making it unique among members of this protein family, 
 > and controls ion and water secretion and absorption in epithelial tissues. 
 > Channel activation is mediated by > cycles of regulatory domain phosphorylation, ATP-binding by the nucleotide-binding domains, 
@@ -24,7 +25,7 @@ FASTA file is taken from https://www.ncbi.nlm.nih.gov/ website.
 
 ## Project Structure
 ``` bash
-└── QPA_Final_project
+└── `QPA_Final_project`
     ├── app
     │   ├── data
     │   │   ├── gc-content.png - output file for gc_ratio_plotting in script.py
@@ -50,25 +51,47 @@ FASTA file is taken from https://www.ncbi.nlm.nih.gov/ website.
 ## Setup
 
 ### 1. Clone repository
+
 ```git clone https://github.com/ekaterinagurina/QPA_Final_project.git```
+
 ### 2. Build the project
+
 ```docker-compose up -d --build```
+
 ### 3. Run the app
+
 ```docker-compose run -it finalproject```
+
 ### ~ Run Transcription function
+
 Transcripting DNA sequence into RNA sequence
+
 ```finalproject trascription <DNA sequence>```
+
 In ```<DNA sequence>``` simply add valid DNA sequence, for example:
+
 ```finalproject trascription CAGGTGGTGTTGTTCAGTT```
+
 output:
+
 ```CAGGTGGTGTTGTTCAGTT```
+
 ### ~ Run Translation function
+
 Translating RNA sequence to build a chain of amino acids
+
 ```finalproject traslation <RNA sequence>```
+
 In ```<RNA sequence>``` add valid RNA sequence, for example:
+
 ```finalproject trascription CAGGUGGUGUUGUUCAGUU```
+
 output:
+
 ```QVVLFS```
+
 ### 4. Switch Docker containers off
+
 When you need to close application, run this command:
+
 ```docker-compose down```
