@@ -26,26 +26,26 @@ FASTA file is taken from https://www.ncbi.nlm.nih.gov/ website.
 ## Project Structure
 ``` bash
 └── `QPA_Final_project`
-    ├── app
-    │   ├── data
-    │   │   ├── gc-content.png - output file for gc_ratio_plotting in script.py
-    │   │   └── gene.fna - FASTA file with DNA sequence to plot GC-ratio
-    │   ├── db
-    │   │   ├── __init__.py
-    │   │   ├── database.py - Creating databases with four tables DNA_Bases, RNA_Bases, Codons, AminoAcids and setting one-to-one relation.
-    │   │   ├── filling.py - filling up the databases with dna, rna, aminoacids bases
-    │   │   └── final_project.db Database file for the one created above.
-    │   ├── tests
-    │   │   ├── __init__.py
-    │   │   ├── test_dna_to_rna.py - file to run test convertion DNA sequence to RNA sequence using Unittest
-    │   │   ├── test_plotting.py - file to test plotting GC-ratio using Unittest
-    │   │   └── test_rna_to_protein.py - file to run test convertion RNA sequence to protein sequence using Unittest
-    │   ├── __init__.py
-    │   ├── config.py - configuration file
-    │   ├── script.py - main file which contents following functions: convert_dna_to_rna, convert_rna_to_protein, gc_ratio_plotting
-    │   ├── docker-compose.yml - docker compose file
-    │   ├── dockerfile - docker file for containers
-    │   └── requirements.txt - list of need extensions to run project   
+    ├── `app`
+    │   ├── `data`
+    │   │   ├── `gc-content.png` - output file for gc_ratio_plotting in script.py
+    │   │   └── `gene.fna` - FASTA file with DNA sequence to plot GC-ratio
+    │   ├── `db`
+    │   │   ├── `__init__.py`
+    │   │   ├── `database.py` - Creating databases with four tables DNA_Bases, RNA_Bases, Codons, AminoAcids and setting one-to-one relation.
+    │   │   ├── `filling.py` - filling up the databases with dna, rna, aminoacids bases
+    │   │   └── `final_project.db` Database file for the one created above.
+    │   ├── `tests`
+    │   │   ├── `__init__.py`
+    │   │   ├── `test_dna_to_rna.py` - file to run test convertion DNA sequence to RNA sequence using Unittest
+    │   │   ├── `test_plotting.py` - file to test plotting GC-ratio using Unittest
+    │   │   └── `test_rna_to_protein.py` - file to run test convertion RNA sequence to protein sequence using Unittest
+    │   ├── `__init__.py`
+    │   ├── `config.py` - configuration file
+    │   ├── `script.py` - main file which contents following functions: convert_dna_to_rna, convert_rna_to_protein, gc_ratio_plotting
+    │   ├── `docker-comp`ose.yml` - docker compose file
+    │   ├── `dockerfile` - docker file for containers
+    │   └── `requirements.txt` - list of need extensions to run project   
 ```
 
 ## Setup
