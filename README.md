@@ -43,7 +43,7 @@ FASTA file is taken from https://www.ncbi.nlm.nih.gov/ website.
     │   ├── `__init__.py`
     │   ├── `config.py` - configuration file
     │   ├── `script.py` - main file which contents following functions: convert_dna_to_rna, convert_rna_to_protein, gc_ratio_plotting
-    │   ├── `docker-comp`ose.yml` - docker compose file
+    │   ├── `docker-compose.yml` - docker compose file
     │   ├── `dockerfile` - docker file for containers
     │   └── `requirements.txt` - list of need extensions to run project   
 ```
